@@ -1,6 +1,6 @@
 # **🌳 ltree**
 
-A lightweight and fast alternative to the standard tree command, tailored specifically for medical imaging datasets** (.nii.gz, .nii, .mha).
+A lightweight and fast alternative to the standard tree command, tailored specifically for medical imaging datasets (.nii.gz, .nii, .mha).
 
 Standard terminal trees clutter when parsing large medical repositories containing hundreds of repetitive patient slices or volume sequences. ltree clusters homogeneous sibling directories into streamlined, single-line summaries while automatically rendering dataset shape, spacing, and data-type fingerprints.
 
