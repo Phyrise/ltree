@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ltree-3d"
+version = "0.1.0"
+authors = [
+    { name = "Arthur", email = "arthur@example.com" }
+]
+description = "A concise, lightning-fast tree layout and metadata fingerprint engine for 3D medical datasets"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+]
+dependencies = [
+    "SimpleITK>=2.0.0",
+    "numpy>=1.20.0",
+    "tqdm>=4.0.0"
+]
+
+[project.scripts]
+ltree = "ltree.main:main"
