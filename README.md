@@ -21,7 +21,7 @@ pip install git+\[https://github.com/Phyrise/ltree\](https://github.com/Phyrise/
 
 ## **Usage**
 
-ltree \[PATH\] \[FLAGS\]
+``` ltree \[PATH\] \[FLAGS\] ```
 
 * **PATH** *(Optional)*: Target directory to analyze. Defaults to the current directory (.).  
 * **\-s, \--scan**: Skips the directory tree rendering and launches a multi-processed snapshot scan across all volumes to isolate min/median/max shape and spacing configurations.  
