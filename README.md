@@ -35,7 +35,7 @@ ltree [PATH] [FLAGS]
 ```
 ltree synthRAD2023/pelvis
 
-Summary tree for: /export/work/users/arthur/datasets/synthRAD2023/pelvis  
+Summary tree for: /export/datasets/synthRAD2023/pelvis  
 ├── 📂 ct (0 dirs, 180 files)  
 │   └── [1PA001.nii.gz ... 1PC098.nii.gz (180 files)] 🔍 1PA001.nii.gz -> (565, 338, 146), Spacing: [1.0, 1.0, 2.5], 32-bit float  
 ├── 📂 mask (0 dirs, 180 files)  
