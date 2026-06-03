@@ -4,30 +4,31 @@ A lightweight, lightning-fast alternative to the standard tree command, tailored
 
 Standard terminal trees clutter when parsing large medical repositories containing hundreds of repetitive patient slices or volume sequences. ltree clusters homogeneous sibling directories into streamlined, single-line summaries while automatically rendering dataset shape, spacing, and data-type fingerprints.
 
-## **📋 Requirements**
+## **Requirements**
 
 Ensure your environment has the necessary medical imaging and CLI libraries:
 
 pip install SimpleITK numpy tqdm
 
-## **🚀 Installation**
+## **Installation**
 
 Install ltree globally as a native terminal tool directly from GitHub:
 
 pip install git+\[https://github.com/Phyrise/ltree\](https://github.com/Phyrise/ltree)
 
-## **🛠️ Usage & Flags**
+## **Usage**
 
 ltree \[PATH\] \[FLAGS\]
 
 * **PATH** *(Optional)*: Target directory to analyze. Defaults to the current directory (.).  
 * **\-s, \--scan**: Skips the directory tree rendering and launches a multi-processed snapshot scan across all volumes to isolate min/median/max shape and spacing configurations.  
-* **\-a, \--all**: Forces the directory engine to display hidden files, configurations, and local cache paths (e.g., .cache, .git).
+* **\-a, \--all**: Forces the directory engine to display hidden files, and local cache paths
 
-## **📊 Live Examples**
+## **Example on SynthRAD2023 dataset**
 
-### **1\. Default Directory Summary Tree**
+### **1\. Dataset summary tree**
 
+```
 ltree synthRAD2023/pelvis
 
 Summary tree for: /export/work/users/arthur/datasets/synthRAD2023/pelvis  
@@ -39,12 +40,14 @@ Summary tree for: /export/work/users/arthur/datasets/synthRAD2023/pelvis
 │   └── \[1PA001.nii.gz ... 1PC098.nii.gz (180 files)\] 🔍 1PA001.nii.gz \-\> (565, 338, 146), Spacing: \[1.0, 1.0, 2.5\], 32-bit float  
 └── 📂 overview (0 dirs, 181 files)  
     └── \[1PA001\_train.png ... 1\_pelvis\_train.xlsx (181 files)\]
+```
+### **2\. Dataset fingerprint scan**
 
-### **2\. Global Dataset Fingerprint Scan**
-
-ltree synthRAD2023/pelvis \-s
+```
+ltree synthRAD2023/pelvis -s
 
 📊 Dataset Fingerprint (540 volumes)  
   • Types:    {'32-bit float': 360, '8-bit unsigned integer': 180}  
   • Shapes:   \[390-586; 248-410; 84-153\] | Median: \[448, 294, 119\]  
   • Spacing:  \[1.0-1.0; 1.0-1.0; 2.5-2.5\] | Median: \[1.0, 1.0, 2.5\]  
+```
