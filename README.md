@@ -1,20 +1,23 @@
 # **🌳 ltree**
 
-A lightweight, lightning-fast alternative to the standard tree command, tailored specifically for **3D Medical Imaging and Machine Learning Datasets** (.nii.gz, .nii, .mha).
+A lightweight and fast alternative to the standard tree command, tailored specifically for medical imaging datasets** (.nii.gz, .nii, .mha).
 
 Standard terminal trees clutter when parsing large medical repositories containing hundreds of repetitive patient slices or volume sequences. ltree clusters homogeneous sibling directories into streamlined, single-line summaries while automatically rendering dataset shape, spacing, and data-type fingerprints.
 
 ## **Requirements**
 
-Ensure your environment has the necessary medical imaging and CLI libraries:
-
-pip install SimpleITK numpy tqdm
+```
+Python >= 3.8
+SimpleITK >= 2.0.0
+NumPy >= 1.20.0
+tqdm >= 4.0.0
+```
 
 ## **Installation**
 
-Install ltree globally as a native terminal tool directly from GitHub:
-
+```
 pip install git+\[https://github.com/Phyrise/ltree\](https://github.com/Phyrise/ltree)
+```
 
 ## **Usage**
 
