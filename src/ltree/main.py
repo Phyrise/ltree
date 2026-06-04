@@ -48,7 +48,20 @@ def get_volume_metadata(filepath):
         dummy_img = sitk.Image([1] * reader.GetDimension(), pixel_id)
         pixel_id_str = dummy_img.GetPixelIDTypeAsString()
         
-        return {"shape": size, "spacing": spacing, "dtype": pixel_id_str, "error": None}
+        # Clean up and map SimpleITK pixel types to standard types (float32, int64, etc.)
+        dtype_map = {
+            "32-bit float": "float32",
+            "64-bit float": "float64",
+            "32-bit signed integer": "int32",
+            "64-bit signed integer": "int64",
+            "16-bit signed integer": "int16",
+            "16-bit unsigned integer": "uint16",
+            "8-bit unsigned integer": "uint8",
+            "8-bit signed integer": "int8"
+        }
+        dtype = dtype_map.get(pixel_id_str, pixel_id_str.replace("-bit ", "").replace(" signed ", "").replace(" unsigned ", ""))
+        
+        return {"shape": size, "spacing": spacing, "dtype": dtype, "error": None}
     except Exception as e:
         return {"error": str(e).replace('\n', ' ')}
 
@@ -127,12 +140,14 @@ def print_compressed_tree(root_dir, indent="", show_hidden=False, executor=None,
         if med_files:
             meta = get_volume_metadata(root / med_files[0])
             if meta and meta["error"] is None:
-                meta_str = f" 🔍 {med_files[0]} -> {meta['shape']}, Spacing: {meta['spacing']}, {meta['dtype']}"
+                remaining_str = f" (+{len(files) - 1} )" if len(files) > 1 else ""
+                meta_str = f" 🔍 {meta['shape']},   spc: {meta['spacing']}, {meta['dtype']}"
+                print(f"{indent}{current_branch}📄 {med_files[0]}{remaining_str}{meta_str}")
             elif meta and meta["error"] is not None:
-                meta_str = f" 🔍 ⚠️ {med_files[0]} Error: {meta['error'][:60]}..."
+                remaining_str = f" (+{len(files) - 1} )" if len(files) > 1 else ""
+                print(f"{indent}{current_branch}📄 {med_files[0]}{remaining_str} 🔍 ⚠️ Error: {meta['error'][:40]}...")
             else:
-                meta_str = ""
-            print(f"{indent}{current_branch}{format_file_list([f.name for f in files])}{meta_str}")
+                print(f"{indent}{current_branch}{format_file_list([f.name for f in files])}")
         else:
             print(f"{indent}{current_branch}{format_file_list([f.name for f in files])}")
         
